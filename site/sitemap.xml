@@ -1,3 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+      <url>
+        <loc>https://gdgoc-ku.com/</loc>
+      </url>
+      <url>
+        <loc>https://gdgoc-ku.com/about/vision/</loc>
+      </url>
+      <url>
+        <loc>https://gdgoc-ku.com/about/fetch/</loc>
+      </url>
+      <url>
+        <loc>https://gdgoc-ku.com/about/point/</loc>
+      </url>
+      <url>
+        <loc>https://gdgoc-ku.com/about/bylaw/</loc>
+      </url>
 </urlset>
