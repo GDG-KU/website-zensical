@@ -37,15 +37,19 @@ copyright = """
 Copyright &copy; 2025 GDG on Campus KU
 """
 
-nav = [
-    { "Home" = "index.md" },
-    { "About" = [
-        { "📌 Vision & Goal" = "about/vision.md" },
-        { "🚀 Fetch" = "about/fetch.md" },
-        { "💯 Point" = "about/point.md" },
-        { "📕 회칙" = "about/bylaw.md" },
-    ] },
-] # Zensical supports both implicit navigation and explicitly defined navigation.
+# nav = [
+#     { "Home" = "index.md" },
+#     { "About" = [
+#         { "📌 Vision & Goal" = "about/vision.md" },
+#         { "🚀 Fetch" = "about/fetch.md" },
+#         { "💯 Point" = "about/point.md" },
+#         { "📕 회칙" = "about/bylaw.md" },
+#     ] },
+#     { "Members" = [
+#     ] },
+# ]
+
+# Zensical supports both implicit navigation and explicitly defined navigation.
 # If you decide not to define a navigation here then Zensical will simply
 # derive the navigation structure from the directory structure of your
 # "docs_dir". The definition below demonstrates how a navigation structure
@@ -77,6 +81,11 @@ nav = [
 [project.theme]
 logo = "assets/logo.png"
 favicon = "assets/logo.png"
+custom_dir = "overrides"
+
+# [project.extra.analytics]
+# provider = "google"
+# property = "G-7VY8FPVMWB"
 
 # Zensical supports more than 60 different languages. This means that the
 # labels and tooltips that Zensical's templates produce are translated.
@@ -161,7 +170,7 @@ features = [
     # When section index pages are enabled, documents can be directly attached
     # to sections, which is particularly useful for providing overview pages.
     # https://zensical.org/docs/setup/navigation/#section-index-pages
-    "navigation.indexes",
+    # "navigation.indexes",
 
     # When instant navigation is enabled, clicks on all internal links will be
     # intercepted and dispatched via XHR without fully reloading the page.
@@ -276,6 +285,10 @@ toggle.name = "Switch to light mode"
 # - https://zensical.org/docs/setup/logo-and-icons
 # - https://zensical.org/docs/authoring/icons-emojis/#search
 # ----------------------------------------------------------------------------
+[project.markdown_extensions.md_in_html]
+[project.markdown_extensions.def_list]
+[project.markdown_extensions.attr_list]
+
 [project.theme.icon]
 logo = "assets/logo.png"
 repo = "assets/logo.png"
