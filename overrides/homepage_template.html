@@ -1,0 +1,425 @@
+{% extends "base.html" %}
+
+{% block site_nav %}
+{% endblock %}
+
+{% block content %}
+<style>
+    :root {
+        --text-main: #202124;
+        --text-muted: #5f6368;
+        --primary: #4285F4;
+        --surface: #ffffff;
+        --surface-alt: #f8f9fa;
+    }
+
+    /* Reset & Base */
+    .md-content {
+        max-width: 100% !important;
+        margin: 0;
+        padding: 0;
+    }
+
+    .md-sidebar {
+        display: none;
+    }
+
+    /* Hide sidebar for landing page feel */
+
+    body {
+        font-family: 'Google Sans', 'Roboto', sans-serif;
+        color: var(--text-main);
+        line-height: 1.6;
+    }
+
+    /* Components */
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 24px;
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 12px 24px;
+        border-radius: 4px;
+        font-weight: 500;
+        text-decoration: none;
+        transition: background 0.2s;
+    }
+
+    .btn-primary {
+        background: var(--primary);
+        color: white;
+    }
+
+    .btn-primary:hover {
+        background: #1967D2;
+        color: white;
+    }
+
+    /* Hero Section */
+    .hero {
+        padding: 120px 0 80px;
+        text-align: center;
+        background: radial-gradient(circle at top right, #e8f0fe 0%, transparent 40%),
+            radial-gradient(circle at bottom left, #fce8e6 0%, transparent 40%);
+    }
+
+    .hero h1 {
+        font-size: 3.5rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        line-height: 1.2;
+        letter-spacing: -0.02em;
+    }
+
+    .hero p {
+        font-size: 1.25rem;
+        color: var(--text-muted);
+        max-width: 700px;
+        margin: 0 auto 2.5rem;
+    }
+
+    /* Section Styles */
+    .section {
+        padding: 80px 0;
+    }
+
+    .section-alt {
+        background-color: var(--surface-alt);
+    }
+
+    .section-title {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 3rem;
+        text-align: center;
+    }
+
+    .section-desc {
+        text-align: center;
+        color: var(--text-muted);
+        max-width: 600px;
+        margin: 0 auto 3rem;
+    }
+
+    /* Cards Grid */
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 32px;
+    }
+
+    .card {
+        background: var(--surface);
+        border-radius: 12px;
+        padding: 24px 32px 32px 32px;
+        /* Reduced top padding as requested */
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+        transition: transform 0.2s, box-shadow 0.2s;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    .card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.12), 0 4px 5px rgba(0, 0, 0, 0.24);
+    }
+
+    .card h3 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        color: var(--primary);
+    }
+
+    .card p {
+        color: var(--text-muted);
+        flex-grow: 1;
+    }
+
+    /* Timeline */
+    .timeline {
+        position: relative;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px 0;
+    }
+
+    .timeline::after {
+        content: '';
+        position: absolute;
+        width: 2px;
+        background-color: #e0e0e0;
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        margin-left: -1px;
+    }
+
+    .timeline-item {
+        padding: 10px 40px;
+        position: relative;
+        background-color: inherit;
+        width: 50%;
+        box-sizing: border-box;
+    }
+
+    .timeline-item::after {
+        content: '';
+        position: absolute;
+        width: 16px;
+        height: 16px;
+        right: -8px;
+        background-color: white;
+        border: 4px solid var(--primary);
+        top: 24px;
+        border-radius: 50%;
+        z-index: 1;
+    }
+
+    .left {
+        left: 0;
+        text-align: right;
+    }
+
+    .right {
+        left: 50%;
+    }
+
+    .left::after {
+        right: -8px;
+    }
+
+    .right::after {
+        left: -8px;
+    }
+
+    .timeline-content {
+        padding: 20px;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+        position: relative;
+        border: 1px solid #f0f0f0;
+        transition: transform 0.2s;
+    }
+
+    .timeline-content:hover {
+        transform: scale(1.02);
+    }
+
+    .timeline-date {
+        font-size: 0.85rem;
+        color: var(--primary);
+        font-weight: 600;
+        margin-bottom: 8px;
+        display: block;
+    }
+
+    .timeline-content h3 {
+        margin-top: 0;
+        font-size: 1.2rem;
+        margin-bottom: 8px;
+    }
+
+    .timeline-content p {
+        font-size: 0.8rem;
+        color: var(--text-muted);
+        margin-bottom: 12px;
+    }
+
+    .timeline-img {
+        width: 100%;
+        height: 160px;
+        object-fit: cover;
+        border-radius: 4px;
+        margin-top: 8px;
+    }
+
+    /* Quote/Vision */
+    .vision-quote {
+        font-size: 1rem;
+        /* Reduced size as requested */
+        font-weight: 300;
+        text-align: center;
+        font-style: italic;
+        color: #444;
+        max-width: 800px;
+        margin: 0 auto;
+        line-height: 1.5;
+    }
+
+    @media (max-width: 768px) {
+        .hero h1 {
+            font-size: 2.5rem;
+        }
+
+        .hero {
+            padding: 80px 0 60px;
+        }
+
+        /* Timeline responsive */
+        .timeline::after {
+            left: 31px;
+        }
+
+        .timeline-item {
+            width: 100%;
+            padding-left: 70px;
+            padding-right: 25px;
+        }
+
+        .timeline-item::after {
+            left: 23px;
+        }
+
+        .left::after {
+            left: 23px;
+        }
+
+        .right {
+            left: 0;
+        }
+
+        .left {
+            text-align: left;
+        }
+    }
+</style>
+
+<!-- Hero -->
+<section class="hero">
+    <div class="container">
+        <h1>Google Developer Groups<br>on Campus Korea Univ.</h1>
+        <p>
+            실패를 두려워하지 않고, 경험을 공유하며 함께 성장하는<br>
+            고려대학교 개발자 커뮤니티입니다.
+        </p>
+        <!-- Button removed as requested -->
+    </div>
+</section>
+
+
+<!-- Activities / Worktree -->
+<section class="section section-alt">
+    <div class="container">
+        <h2 class="section-title">주요 활동 (Activities)</h2>
+        <!-- Desc removed to be cleaner, or keep if preferred. Let's keep cards focused. -->
+
+        <div class="grid">
+            <!-- Worktree -->
+            <a href="worktree/0.worktree/" style="text-decoration: none; color: inherit;">
+                <div class="card">
+                    <div class="card-content">
+                        <h3>🌴 Worktree</h3>
+                        <p>
+                            기획부터 배포까지 전체 개발 프로세스를 경험하는 프로젝트 활동입니다.
+                            다른 분야의 멤버들과 협업하며 실전 역량을 키울 수 있습니다.
+                        </p>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Fetch -->
+            <a href="about/3.fetch/" style="text-decoration: none; color: inherit;">
+                <div class="card">
+                    <div class="card-content">
+                        <h3>🚀 Fetch</h3>
+                        <p>
+                            각자의 개발 경험과 지식을 공유하는 세션입니다.
+                            다양한 주제의 기술 토크를 통해 서로 피드백을 주고받으며 성장합니다.
+                        </p>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Events (Replaced Branch & Point) -->
+            <a href="events/Solution_Challenge/" style="text-decoration: none; color: inherit;">
+                <!-- Link to a key event or events index -->
+                <div class="card">
+                    <div class="card-content">
+                        <h3>🎉 Events</h3>
+                        <p>
+                            Solution Challenge, 해커톤, 네트워킹 데이 등
+                            글로벌 GDG 커뮤니티와 함께하는 다양한 행사에 참여합니다.
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Recent Events Timeline -->
+<section class="section">
+    <div class="container">
+        <h2 class="section-title">GDGoC 4th Events</h2>
+
+        <div class="timeline">
+
+            <!-- Item 2: 2025-2 MT -->
+            <div class="timeline-item right">
+                <div class="timeline-content">
+                    <span class="timeline-date">2025.12.28</span>
+                    <h3>2025-2 MT</h3>
+                    <p>한 학기를 마무리하며 멤버들과 함께 즐거운 시간을 보냈습니다.</p>
+                    <img src="events/2025-2-MT.assets/KakaoTalk_Photo_2025-11-30-22-07-32.jpeg" class="timeline-img"
+                        alt="MT">
+                    <a href="events/2025-2-MT/"
+                        style="display:block; margin-top:8px; font-weight:500; text-decoration:none; color:var(--primary);">Read
+                        more →</a>
+                </div>
+            </div>
+
+            <!-- Item 3: DemoDay -->
+            <div class="timeline-item left">
+                <div class="timeline-content">
+                    <span class="timeline-date">2025.12.05</span>
+                    <h3>2025-2 DemoDay</h3>
+                    <p>고려대 x 연세대 연합 데모데이.프로젝트 성과를 공유하고 교류의 장이었습니다.</p>
+                    <img src="events/demoday.assets/KakaoTalk_Photo_2025-12-08-21-01-54_012.jpeg" class="timeline-img"
+                        alt="DemoDay">
+                    <a href="events/demoday/"
+                        style="display:block; margin-top:8px; font-weight:500; text-decoration:none; color:var(--primary);">Read
+                        more →</a>
+                </div>
+            </div>
+
+            <!-- Item 4: RE:ALThon -->
+            <div class="timeline-item right">
+                <div class="timeline-content">
+                    <span class="timeline-date">2025.11.22</span>
+                    <h3>RE:ALThon Hackathon</h3>
+                    <p>고려대, 연세대, 성균관대, 이화여대, 서강대 5개 대학 연합 해커톤을 진행했습니다.</p>
+                    <img src="events/realthon.assets/all.jpeg" class="timeline-img" alt="Realthon">
+                    <a href="events/realthon/"
+                        style="display:block; margin-top:8px; font-weight:500; text-decoration:none; color:var(--primary);">Read
+                        more →</a>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 48px;">
+            <a href="members/1.alumni/" class="btn"
+                style="border-radius: 24px; padding: 12px 36px; font-size: 1.1rem;">Before?</a>
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}
+
+{% block footer %}
+<footer class="md-footer">
+    <div class="md-footer-meta md-typeset" style="background: #f1f3f4; color: var(--text-muted);">
+        <div class="md-footer-meta__inner md-grid">
+            {% include "partials/copyright.html" %}
+            {% if config.extra.social %}
+            {% include "partials/social.html" %}
+            {% endif %}
+        </div>
+    </div>
+</footer>
+{% endblock %}

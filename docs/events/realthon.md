@@ -24,7 +24,7 @@ DevRel리드 **박신디**, **김민재**, DevRel **김재민**, **권주영**, 
 
 ## Photos
 
-![단체1](realthon.assets/단체1.jpeg)
+![단체1](realthon.assets/all.jpeg)
 
 ![_DSC8278](realthon.assets/_DSC8278.jpg)
 
