@@ -1,5 +1,0 @@
----
-title: 🎓 Alumni
-comments: true
----
-
